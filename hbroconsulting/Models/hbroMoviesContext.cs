@@ -14,7 +14,7 @@ namespace hbroconsulting.Models
             //Leave blank for now
         }
 
-        public DbSet<movieresponse> Responses { get; set; }
+        public DbSet<movieresponse> responses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder ab)
         {
@@ -30,6 +30,30 @@ namespace hbroconsulting.Models
                     Rating = "PG",
                     Edited = false,
                     LentTo = "mom",
+                    Notes = "no"
+                },
+                new movieresponse
+                {
+                    MovieId = 2,
+                    Category = "Comedy",
+                    Title = "Hot Rot",
+                    Year = 2007,
+                    Director = "Akiva Schaffer",
+                    Rating = "PG-13",
+                    Edited = true,
+                    LentTo = "Lindy",
+                    Notes = "no"
+                },
+                new movieresponse
+                {
+                    MovieId = 3,
+                    Category = "Horror/Suspence",
+                    Title = "A Quiet Place",
+                    Year = 2018,
+                    Director = "John Krasinski",
+                    Rating = "PG-13",
+                    Edited = false,
+                    LentTo = "paul",
                     Notes = "no"
                 }
             );
