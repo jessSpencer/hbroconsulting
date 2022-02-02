@@ -14,7 +14,7 @@ namespace hbroconsulting.Models
             //Leave blank for now
         }
 
-        public DbSet<movieresponse> Responses { get; set; }
+        public DbSet<movieresponse> responses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder ab)
         {
@@ -32,7 +32,6 @@ namespace hbroconsulting.Models
                     LentTo = "mom",
                     Notes = "no"
                 },
-
                 new movieresponse
                 {
                     MovieId = 2,
@@ -45,7 +44,6 @@ namespace hbroconsulting.Models
                     LentTo = "Lindy",
                     Notes = "no"
                 },
-
                 new movieresponse
                 {
                     MovieId = 3,

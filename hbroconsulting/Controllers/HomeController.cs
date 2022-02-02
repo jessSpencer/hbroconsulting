@@ -11,14 +11,12 @@ namespace hbroconsulting.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private hbroMoviesContext _theContext { get; set; }
+        private hbroMoviesContext moviedbContext { get; set; }
 
         //Constructor
-        public HomeController(ILogger<HomeController> logger, hbroMoviesContext name)
-        { 
-            _logger = logger;
-            _theContext = name;
+        public HomeController(hbroMoviesContext name)
+        {
+            moviedbContext = name;
         }
         public IActionResult Index()
         {
@@ -34,25 +32,22 @@ namespace hbroconsulting.Controllers
         [HttpPost]
         public IActionResult Movies(movieresponse mr)
         {
-            _theContext.Add(mr);
-            _theContext.SaveChanges();
+            moviedbContext.Add(mr);
+            moviedbContext.SaveChanges();
 
             return View("confirmation", mr);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
         public IActionResult MyPodcast()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult MovieList ()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var applications = moviedbContext.responses.ToList();
+            
+            return View(applications);
         }
     }
 }
