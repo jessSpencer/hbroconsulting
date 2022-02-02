@@ -31,6 +31,32 @@ namespace hbroconsulting.Models
                     Edited = false,
                     LentTo = "mom",
                     Notes = "no"
+                },
+
+                new movieresponse
+                {
+                    MovieId = 2,
+                    Category = "Comedy",
+                    Title = "Hot Rot",
+                    Year = 2007,
+                    Director = "Akiva Schaffer",
+                    Rating = "PG-13",
+                    Edited = true,
+                    LentTo = "Lindy",
+                    Notes = "no"
+                },
+
+                new movieresponse
+                {
+                    MovieId = 3,
+                    Category = "Horror/Suspence",
+                    Title = "A Quiet Place",
+                    Year = 2018,
+                    Director = "John Krasinski",
+                    Rating = "PG-13",
+                    Edited = false,
+                    LentTo = "paul",
+                    Notes = "no"
                 }
             );
         }
