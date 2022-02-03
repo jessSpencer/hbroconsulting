@@ -15,15 +15,26 @@ namespace hbroconsulting.Models
         }
 
         public DbSet<movieresponse> responses { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder ab)
         {
+            ab.Entity<Category>().HasData(
+                new Category { CategoryId = 9, CategoryName = "Action/Adventure" }, new Category { CategoryId = 1, CategoryName = "Comedy" },
+                new Category { CategoryId = 2, CategoryName = "Comedy" },
+                new Category { CategoryId = 3, CategoryName = "Drama" },
+                new Category { CategoryId = 4, CategoryName = "Family" },
+                new Category { CategoryId = 5, CategoryName = "Horror/Suspense" },
+                new Category { CategoryId = 6, CategoryName = "Miscellaneous" },
+                new Category { CategoryId = 7, CategoryName = "Television" },
+                new Category { CategoryId = 8, CategoryName = "VHS" }
+            );
             ab.Entity<movieresponse>().HasData(
 
                 new movieresponse
                 {
                     MovieId = 1,
-                    Category = "Family",
+                    CategoryId = 4,
                     Title = "Encanto",
                     Year = 2021,
                     Director = "Byron Howard",
@@ -35,7 +46,7 @@ namespace hbroconsulting.Models
                 new movieresponse
                 {
                     MovieId = 2,
-                    Category = "Comedy",
+                    CategoryId = 2,
                     Title = "Hot Rot",
                     Year = 2007,
                     Director = "Akiva Schaffer",
@@ -47,7 +58,7 @@ namespace hbroconsulting.Models
                 new movieresponse
                 {
                     MovieId = 3,
-                    Category = "Horror/Suspence",
+                    CategoryId = 5,
                     Title = "A Quiet Place",
                     Year = 2018,
                     Director = "John Krasinski",

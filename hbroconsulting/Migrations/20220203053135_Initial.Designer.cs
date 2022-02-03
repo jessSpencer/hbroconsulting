@@ -8,7 +8,7 @@ using hbroconsulting.Models;
 namespace hbroconsulting.Migrations
 {
     [DbContext(typeof(hbroMoviesContext))]
-    [Migration("20220202085605_Initial")]
+    [Migration("20220203053135_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,15 +17,75 @@ namespace hbroconsulting.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.22");
 
+            modelBuilder.Entity("hbroconsulting.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 9,
+                            CategoryName = "Action/Adventure"
+                        },
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Comedy"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Comedy"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Drama"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "Family"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryName = "Horror/Suspense"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            CategoryName = "Miscellaneous"
+                        },
+                        new
+                        {
+                            CategoryId = 7,
+                            CategoryName = "Television"
+                        },
+                        new
+                        {
+                            CategoryId = 8,
+                            CategoryName = "VHS"
+                        });
+                });
+
             modelBuilder.Entity("hbroconsulting.Models.movieresponse", b =>
                 {
                     b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -54,13 +114,15 @@ namespace hbroconsulting.Migrations
 
                     b.HasKey("MovieId");
 
-                    b.ToTable("Responses");
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("responses");
 
                     b.HasData(
                         new
                         {
                             MovieId = 1,
-                            Category = "Family",
+                            CategoryId = 4,
                             Director = "Byron Howard",
                             Edited = false,
                             LentTo = "mom",
@@ -72,7 +134,7 @@ namespace hbroconsulting.Migrations
                         new
                         {
                             MovieId = 2,
-                            Category = "Comedy",
+                            CategoryId = 2,
                             Director = "Akiva Schaffer",
                             Edited = true,
                             LentTo = "Lindy",
@@ -84,7 +146,7 @@ namespace hbroconsulting.Migrations
                         new
                         {
                             MovieId = 3,
-                            Category = "Horror/Suspence",
+                            CategoryId = 5,
                             Director = "John Krasinski",
                             Edited = false,
                             LentTo = "paul",
@@ -93,6 +155,15 @@ namespace hbroconsulting.Migrations
                             Title = "A Quiet Place",
                             Year = 2018
                         });
+                });
+
+            modelBuilder.Entity("hbroconsulting.Models.movieresponse", b =>
+                {
+                    b.HasOne("hbroconsulting.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
